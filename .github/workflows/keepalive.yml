@@ -3,13 +3,34 @@ name: Keep Codespace Awake
 on:
   schedule:
     - cron: "*/25 * * * *"  # Executa a cada 25 minutos
-  workflow_dispatch:
+  workflow_dispatch:         # Permite execução manual
 
 jobs:
   ping:
+    name: Ping Codespace
     runs-on: ubuntu-latest
+
     steps:
-      - name: Keep Codespace Active
+      - name: Log Start Time
         run: |
-          echo "Pinging Codespace..."
-          curl -I https://psychic-xylophone-gpv7jxxpg94f9pv9-8443.app.github.dev || echo "Falha ao pingar Codespace."
+          echo "🕐 Iniciando verificação em: $(date '+%d/%m/%Y %H:%M:%S')"
+          echo "Verificando status do Codespace..."
+
+      - name: Check Codespace Status
+        id: ping
+        run: |
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" https://psychic-xylophone-gpv7jxxpg94f9pv9-8443.app.github.dev)
+          if [ "$RESPONSE" -eq 200 ]; then
+            echo "✅ Codespace está ONLINE e respondendo corretamente."
+            echo "status=online" >> $GITHUB_ENV
+          else
+            echo "⚠️ Codespace não respondeu (HTTP $RESPONSE). Pode estar suspenso ou offline."
+            echo "status=offline" >> $GITHUB_ENV
+          fi
+
+      - name: Log Summary
+        run: |
+          echo "📋 Resultado da verificação:"
+          echo "Status: ${{ env.status }}"
+          echo "Horário: $(date '+%H:%M:%S')"
+          echo "----------------------------------------"
