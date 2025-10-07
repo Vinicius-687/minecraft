@@ -1,8 +1,0 @@
-data:
-  change-interval: 100
-  texts:
-    - '&b[%date%]'
-hora:
-  change-interval: 100
-  texts:
-    - '&b%time%'

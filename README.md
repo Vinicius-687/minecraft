@@ -1,60 +1,20 @@
-# Hospedando Minecraft com o GitHub
+[+] Info:- Cleaning up temp dir
 
-#### Instalação
+[+] Info:- Congrats! Crafty is now installed!
 
-1. Crie uma conta no [GitHub](https://github.com/signup).
-- Caso você já tenha uma conta, avance para o próximo passo.
+[+] Info:- We created a user called 'crafty' for you to run crafty as. (DO NOT RUN CRAFTY WITH ROOT OR SUDO) Switch to crafty user with 'sudo su crafty -'
 
-2. Acesse meu [Repositório](https://github.com/tothpng/minecraft).
-- Clique em "Fork".
-- Em seguida, crie o nome do repositório.
+[+] Info:- Your install is located here: /workspaces/minecraft/minecraft
 
-3. Crie um novo [Codespace](https://github.com/codespaces/new).
-- Em seguida, clique em `Repository` e selecione o fork.
-- Depois, clique em `Machine type` e selecione a última opção.
+-------------------------------------------------------------------------------------------------
+[+] Info:- You can run crafty by running /workspaces/minecraft/minecraft/run_crafty.sh
 
-4. Crie uma conta no [Ngrok](https://dashboard.ngrok.com/signup).
-- Clique em `Setup & Installation` em Agents selecione Linux.
+[+] Info:- You can update crafty by running /workspaces/minecraft/minecraft/update_crafty.sh
 
-5. Abra seu Codespace. 
-- Clique em `Terminal` ou `Ctrl + J`.
-- Em Apt copie o seguinte comando de instalação do ngrok e pressione enter.
-- Em seguida copie o seguinte comando para adicionar seu authtoken e pressione enter.
-- Passe o mouse em cima do arquivo ngrok.yml e abra ele `Ctrl + Clique`.
-- Logo abaixo de `authtoken`, abra uma linha e cole isso `region: sa`.
-- Agora aperte `Ctrl + S` para salvar o arquivo, logo em seguida feche o arquivo e volte para o Terminal.
-- Execute o comando `ngrok tcp 25565`.
-- Copie o ip fornecido em `Forwarding`.
-- Pressione as teclas `Ctrl + Shift + '` para abrir um novo bash.
-- Agora digite o seguinte comando; `./start.sh`.
+[+] Info:- A service unit file has been saved in /etc/systemd/system/crafty.service
 
-# Dúvidas
+[+] Info:- run this command to enable crafty as a service- 'sudo systemctl enable crafty.service' 
 
-#### Como evitar o banimento no GitHub?
+[+] Info:- run this command to start the crafty service- 'sudo systemctl start crafty.service' 
 
-- Ativando a [Autenticação de dois fatores](https://github.com/settings/two_factor_authentication/setup/intro).
-
-#### Qual launcher de Minecraft você recomenda?
-
-- [Sklauncher](https://skmedix.pl/downloads)
-
-#### Posso jogar em Multiplayer?
-
-- Sim, o servidor suporta jogabilidade multiplayer.
-- O uso do Ngrok facilita a conexão dos jogadores ao servidor.
-- Mantendo uma latência máxima de 150ms.
-
-#### Quais versões são suportadas?
-
-- Vanilla, Forge, Fabric e Bukkit/Spigot
-
-#### Onde posso baixar as versões informadas?
-
-- [Vanilla](https://mcversions.net/)
-- [Forge](https://mohistmc.com/downloads)
-- [Fabric](https://fabricmc.net/use/server/)
-- [Bukkit/Spigot](https://papermc.io/downloads/paper)
-
-## Autores
-
-- [Toth](https://github.com/tothpng)
+playit
