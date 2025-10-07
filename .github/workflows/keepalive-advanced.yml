@@ -1,0 +1,33 @@
+name: Keep Codespace Awake (Advanced)
+
+on:
+  schedule:
+    - cron: "*/25 * * * *"  # Executa a cada 25 minutos
+  workflow_dispatch:
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log start time
+        run: echo "🕐 Iniciando verificação em $(date '+%d/%m/%Y %H:%M:%S')"
+
+      - name: Ping via API GitHub Codespaces
+        env:
+          GITHUB_TOKEN: ${{ secrets.KEEPALIVE_TOKEN }}
+          CODESPACE_NAME: psychic-xylophone-gpv7jxxpg94f9pv9
+        run: |
+          echo "Enviando ping para Codespace: $CODESPACE_NAME..."
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/user/codespaces)
+          
+          if [ "$RESPONSE" -eq 200 ]; then
+            echo "✅ Ping bem-sucedido — Codespace mantido ativo."
+          else
+            echo "⚠️ Falha ao enviar ping (HTTP $RESPONSE)."
+          fi
+
+      - name: Final Log
+        run: echo "✅ Processo concluído em $(date '+%H:%M:%S')"
